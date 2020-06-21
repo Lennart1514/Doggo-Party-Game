@@ -60,6 +60,7 @@ text = "About"
 visible = true
 margin_right = 1024.0
 margin_bottom = 600.0
+popup_exclusive = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -108,7 +109,7 @@ text = "No Controller selected"
 align = 1
 valign = 1
 
-[node name="Button" type="Button" parent="Start Game/Panel/CenterContainer2/HBoxContainer/Doggo Box"]
+[node name="ControllerButtonDog" type="Button" parent="Start Game/Panel/CenterContainer2/HBoxContainer/Doggo Box"]
 margin_top = 340.0
 margin_right = 300.0
 margin_bottom = 360.0
@@ -123,6 +124,7 @@ margin_bottom = 360.0
 margin_right = 129.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 100, 25 )
+disabled = true
 text = "Start"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Start Game/Panel/CenterContainer2/HBoxContainer/VBoxContainer"]
@@ -175,7 +177,7 @@ text = "No Controller selected"
 align = 1
 valign = 1
 
-[node name="Button" type="Button" parent="Start Game/Panel/CenterContainer2/HBoxContainer/Catto Box"]
+[node name="ControllerButtonCat" type="Button" parent="Start Game/Panel/CenterContainer2/HBoxContainer/Catto Box"]
 margin_top = 340.0
 margin_right = 300.0
 margin_bottom = 360.0
@@ -184,3 +186,5 @@ text = "Set Controller"
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Start Game/Panel/CenterContainer2/HBoxContainer/Doggo Box/ControllerButtonDog" to="." method="_on_ControllerButtonDog_pressed"]
+[connection signal="pressed" from="Start Game/Panel/CenterContainer2/HBoxContainer/Catto Box/ControllerButtonCat" to="." method="_on_ControllerButtonCat_pressed"]
