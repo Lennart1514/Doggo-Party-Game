@@ -1,27 +1,69 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Doggo/DoggoRL2.png" type="Texture" id=1]
-[ext_resource path="res://Background/BG.png" type="Texture" id=2]
+[ext_resource path="res://Background/Grass.png" type="Texture" id=2]
 [ext_resource path="res://Doggo/DoggoRL1.png" type="Texture" id=3]
+[ext_resource path="res://Minigame01.gd" type="Script" id=4]
+[ext_resource path="res://Doggo/DoggoDown2.png" type="Texture" id=5]
+[ext_resource path="res://Doggo/DoggoDown1.png" type="Texture" id=6]
+[ext_resource path="res://Doggo/DoggoUp1.png" type="Texture" id=7]
+[ext_resource path="res://Doggo/DoggoUp2.png" type="Texture" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Down",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 3 ), ExtResource( 1 ) ],
 "loop": true,
-"name": "default",
-"speed": 2.0
+"name": "RL",
+"speed": 5.0
 } ]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 48.8485, 8.18779 )
+
+[node name="Minigame" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="BG" type="Sprite" parent="."]
-position = Vector2( 512.007, 416 )
-scale = Vector2( 10.6563, 15.3704 )
+position = Vector2( 511.27, 299.293 )
+scale = Vector2( 10.1983, 10.6191 )
 texture = ExtResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="Doggo" type="KinematicBody2D" parent="."]
+
+[node name="AnimatedDoggo" type="AnimatedSprite" parent="Doggo"]
 position = Vector2( 69.2534, 65.3845 )
 scale = Vector2( 4.44827, 4.16405 )
 frames = SubResource( 1 )
+animation = "Down"
 frame = 1
 playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doggo"]
+position = Vector2( 66.1869, 67.3843 )
+scale = Vector2( 0.669782, 4.62367 )
+shape = SubResource( 2 )
+
+[node name="Catto" type="KinematicBody2D" parent="."]
+position = Vector2( 900, 0 )
+
+[node name="AnimatedDoggo" type="AnimatedSprite" parent="Catto"]
+position = Vector2( 69.2534, 65.3845 )
+scale = Vector2( 4.44827, 4.16405 )
+frames = SubResource( 1 )
+animation = "Down"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Catto"]
+position = Vector2( 66.1869, 67.3843 )
+scale = Vector2( 0.669782, 4.62367 )
+shape = SubResource( 2 )
