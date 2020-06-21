@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Minigames/Jumper/Player.gd" type="Script" id=2]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1136, 24 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.167742, 0.43871, 1 )
+colors = PoolColorArray( 0.290196, 1, 0, 1, 0.266667, 0.192157, 0.0196078, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+width = 20
+
+[node name="Jumper Minigame" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
+[node name="Player Doggo" type="KinematicBody2D" parent="."]
+position = Vector2( 160, 504 )
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player Doggo"]
+position = Vector2( -0.359006, -0.108652 )
+scale = Vector2( 0.315982, 0.315983 )
+frames = SubResource( 4 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Player Doggo"]
+position = Vector2( 0, 8 )
+enabled = true
+cast_to = Vector2( 0, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Doggo"]
+shape = SubResource( 5 )
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2( 0, 600 )
+shape = SubResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="Ground"]
+margin_left = 1024.0
+margin_top = 576.0
+margin_right = 1082.0
+margin_bottom = 1600.0
+rect_rotation = 90.0
+texture = SubResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
