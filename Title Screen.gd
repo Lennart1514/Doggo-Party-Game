@@ -8,7 +8,8 @@ extends Control
 var Inputwaiting = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$CenterContainer/VBoxContainer/PointsCat.text = "Cat Points:" + str(Global.PointsCat)
+	$CenterContainer/VBoxContainer/PointsDog.text = "Dog Points:" + str(Global.PointsDog)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,3 +46,12 @@ func _on_ControllerButtonDog_pressed():
 	$"Start Game/Panel/CenterContainer2/HBoxContainer/Doggo Box/ControllerButtonDog".disabled = true
 	$"Start Game/Panel/CenterContainer2/HBoxContainer/Doggo Box/Label".text = "Push a button"
 	Inputwaiting = "Dog"
+
+
+func _on_Start_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	get_tree().change_scene("res://Minigame01.tscn")
+
+
+func _on_Fullscreen_pressed():
+	OS.window_fullscreen = !OS.window_fullscreen
