@@ -3,11 +3,16 @@ extends Node2D
 
 # Declare member variables here. Examples:
 # var a = 2
-# var b = "text"
+var DoggoP = 0
+var CattoP = 0
+var RandomV = 0
+var RandomH = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	CoinPos()
+	
 	pass # Replace with function body.
 
 
@@ -44,7 +49,12 @@ func _process(delta):
 	
 	
 		
-		
+func CoinPos():
+	randomize()
+	RandomV = randi()%500+1
+	RandomH = randi()%950+50
+
+	$Coin.position = Vector2(RandomH, RandomV)
 	
 		
 		
@@ -52,3 +62,25 @@ func _process(delta):
 
 	
 	
+
+
+
+
+func _on_Coin_body_entered(body):
+	if body == get_node("Doggo"):
+		Input.start_joy_vibration(0, 0.3, 0.1, 0.5)
+		DoggoP +=1
+		$DoggoP.text = str(DoggoP) + " / 20"
+		CoinPos()
+		if DoggoP == 5:
+			pass
+			#Global.MinigameWon(true)
+	if body == get_node("Catto"):
+		Input.start_joy_vibration(1, 0.3, 0.1, 0.5)
+		CattoP +=1
+		$CattoP.text = str(CattoP) + " / 20"
+		CoinPos()
+		if CattoP == 5:
+			pass
+			#Global.MinigameWon(false)
+	pass # Replace with function body.
