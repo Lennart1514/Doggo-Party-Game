@@ -13,6 +13,8 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_top = -0.00135752
+anchor_bottom = -0.00135752
 margin_right = 1024.0
 margin_bottom = 600.0
 __meta__ = {
