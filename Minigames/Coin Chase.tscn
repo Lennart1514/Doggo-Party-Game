@@ -1,0 +1,131 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Minigames/Coin Chase/Coin2.png" type="Texture" id=1]
+[ext_resource path="res://Minigames/Coin Chase/Coin1.png" type="Texture" id=2]
+[ext_resource path="res://PixelOperatorHB.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Background/epicXD.wav" type="AudioStream" id=4]
+[ext_resource path="res://Background/Grass.png" type="Texture" id=5]
+[ext_resource path="res://Textures/CattoSprite.tres" type="SpriteFrames" id=6]
+[ext_resource path="res://Textures/DoggoSprite.tres" type="SpriteFrames" id=7]
+[ext_resource path="res://Minigames/Coin Chase.gd" type="Script" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 20.1673, 20.0381 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32.1292, 5.17554 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 668.035, 9.98712 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 13.6302, 443.67 )
+
+[node name="Minigame" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 511.27, 299.293 )
+scale = Vector2( 10.1983, 10.6191 )
+texture = ExtResource( 5 )
+
+[node name="Coin" type="Area2D" parent="."]
+position = Vector2( 1024, 500 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Coin"]
+position = Vector2( -36.4546, 73.7368 )
+scale = Vector2( 3.21016, 3.23742 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin"]
+position = Vector2( -35.95, 73.9631 )
+shape = SubResource( 2 )
+
+[node name="Doggo" type="KinematicBody2D" parent="."]
+
+[node name="AnimatedDoggo" type="AnimatedSprite" parent="Doggo"]
+position = Vector2( 69.2534, 65.3845 )
+scale = Vector2( 4.44827, 4.16405 )
+frames = ExtResource( 7 )
+animation = "Down"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doggo"]
+position = Vector2( 66.1869, 67.3843 )
+scale = Vector2( 0.669782, 4.62367 )
+shape = SubResource( 3 )
+
+[node name="Catto" type="KinematicBody2D" parent="."]
+position = Vector2( 900, 0 )
+
+[node name="AnimatedDoggo" type="AnimatedSprite" parent="Catto"]
+position = Vector2( 69.2534, 65.3845 )
+scale = Vector2( 4.44827, 4.16405 )
+frames = ExtResource( 6 )
+animation = "Down"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Catto"]
+position = Vector2( 66.1869, 67.3843 )
+scale = Vector2( 0.669782, 4.62367 )
+shape = SubResource( 3 )
+
+[node name="DoggoP" type="Label" parent="."]
+margin_left = 22.0
+margin_top = 534.0
+margin_right = 111.0
+margin_bottom = 577.0
+custom_fonts/font = SubResource( 4 )
+text = "0 / 20"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CattoP" type="Label" parent="."]
+margin_left = 894.12
+margin_top = 538.911
+margin_right = 989.12
+margin_bottom = 581.911
+custom_fonts/font = SubResource( 4 )
+text = "0 / 20"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CattoP"]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="Border" type="StaticBody2D" parent="."]
+
+[node name="C" type="CollisionShape2D" parent="Border"]
+position = Vector2( 476.319, 4.52202 )
+shape = SubResource( 5 )
+
+[node name="C2" type="CollisionShape2D" parent="Border"]
+position = Vector2( 452.202, 599.636 )
+shape = SubResource( 5 )
+
+[node name="c3" type="CollisionShape2D" parent="Border"]
+position = Vector2( -6.46179, 312.75 )
+shape = SubResource( 6 )
+
+[node name="c4" type="CollisionShape2D" parent="Border"]
+position = Vector2( 1024.88, 281.017 )
+shape = SubResource( 6 )
+[connection signal="body_entered" from="Coin" to="." method="_on_Coin_body_entered"]
