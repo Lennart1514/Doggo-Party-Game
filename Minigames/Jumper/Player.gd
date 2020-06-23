@@ -39,6 +39,6 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 	
 	if $DeathDetector.get_collider() != null:
-		Global.MinigameWon(Dog)
+		Global.MinigameWon(!Dog)
 # warning-ignore:return_value_discarded
 		get_tree().change_scene("res://Title Screen.tscn")
