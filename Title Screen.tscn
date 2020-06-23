@@ -240,7 +240,6 @@ theme = ExtResource( 4 )
 text = "Set Controller"
 
 [node name="Game Description" type="Popup" parent="."]
-visible = true
 margin_right = 1024.0
 margin_bottom = 600.0
 popup_exclusive = true

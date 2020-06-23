@@ -40,14 +40,14 @@ func StartRound():
 # warning-ignore:return_value_discarded
 	
 func _input(event):
-	if Inputwaiting == "Dog" and event != InputEventJoypadButton and event.is_pressed():
+	if Inputwaiting == "Dog" and event is InputEventJoypadButton and event.is_pressed():
 		Global.ControllerDog = event.device
 		Input.start_joy_vibration(event.device, 0.1, 0.1 , 0.5)
 		$"Start Game/Panel/CenterContainer2/HBoxContainer/Doggo Box/ControllerButtonDog".disabled = false
 		$"Start Game/Panel/CenterContainer2/HBoxContainer/Doggo Box/Label".text = "Controller:"+str(event.device+1)
 		Inputwaiting = null
 		updatePlayButton()
-	if Inputwaiting == "Cat" and event != InputEventJoypadButton and event.is_pressed():
+	if Inputwaiting == "Cat" and event is InputEventJoypadButton and event.is_pressed():
 		Global.ControllerCat = event.device
 		Input.start_joy_vibration(event.device, 0.1, 0.1 , 0.5)
 		$"Start Game/Panel/CenterContainer2/HBoxContainer/Catto Box/ControllerButtonCat".disabled = false
@@ -55,7 +55,7 @@ func _input(event):
 		Inputwaiting = null
 		updatePlayButton()
 		
-	if WaitReady and event != InputEventJoypadButton and event.is_pressed():
+	if WaitReady and event  is InputEventJoypadButton and event.is_pressed():
 		if event.device == Global.ControllerCat:
 			CatReady = true
 			$"Game Description/Panel/CenterContainer2/HBoxContainer/Catto Box/Label".text = "Ready"
